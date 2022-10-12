@@ -65,5 +65,5 @@ for sample in sra_list:
     except Exception:
         continue
     if sra_txt == f"{country}/SraAccList/SraAccList_01.txt":
-        print(f"\r{round(counter/total,2)}%",end="")
+        print(f"{round(counter/total,2)}%",end="")
 sra_list.close()

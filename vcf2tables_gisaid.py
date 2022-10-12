@@ -85,4 +85,4 @@ if len(vcfs) >= 0:
                         continue
                     break
             if sample_n==1:
-                print(f"\r{round(n_vcf*counter/total,2)}%",end="")
+                print(f"{round(n_vcf*counter/total,2)}%",end="\r")
