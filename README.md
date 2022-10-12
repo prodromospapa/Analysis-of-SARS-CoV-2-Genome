@@ -1,8 +1,9 @@
-# thesis
+# Instructions
 prerequirements: 1)all .sh must be run with 'bash *.sh' format
                  2)Anaconda/minoconda must be installed in the system
-                 3)Access to a sudo user is obligated if you run it for the first time in order to install the needed software using the 0_install_requirements.sh.sh      
-
+                 3)Access to a sudo user is obligated if you run it for the first time in order to install the needed software using the 0_install_requirements.sh
+                 4)Academic email
+                 
 It is recommended to run in a tmux session as most of the scripts may run for a long period of time.
 
 1)Run 0_install_requirements.sh if you use this project for the first time and everything that is needed will be downloaded automatically.
