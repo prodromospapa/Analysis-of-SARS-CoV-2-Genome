@@ -1,7 +1,8 @@
-import sys
+import os
 import pandas as pd
-samples_files_n = range(1,int(sys.argv[1]))
+
 country=open("country.txt").readline().strip()
+samples_files_n=[filename for filename in os.listdir(f'{country}/tables_gisaid') if filename.startswith("samples_")]
 
 dates = []
 for sample_n in samples_files_n:

@@ -14,6 +14,7 @@ counter = 0
 total = os.popen(f"less {country}/SraAccList/SraAccList_01.txt | wc -l").read()
 os.system(f"mkdir -p {country}/p_tables")
 sra_list = open(sra_txt)
+
 for sample in sra_list:
     counter += 1
     try:

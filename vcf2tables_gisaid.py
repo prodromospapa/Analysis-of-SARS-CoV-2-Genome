@@ -26,19 +26,19 @@ def create_table(table):
         else:
             base = ref[index]
             table.at[base_pos,base] += 1
-    table.to_pickle(f"tables_gisaid/{date}.pickle")
+    table.to_pickle(f"{country}/tables_gisaid/{date}.pickle")
     
 def samples_per_day(date,sample_n):#function to count number of samples each day
-    if os.path.exists(f"tables_gisaid/samples_{sample_n}.pickle"):
-        dates_table = pd.read_pickle(f"tables_gisaid/samples_{sample_n}.pickle")
+    if os.path.exists(f"{country}/tables_gisaid/samples_{sample_n}.pickle"):
+        dates_table = pd.read_pickle(f"{country}/tables_gisaid/samples_{sample_n}.pickle")
         if date in dates_table:
             dates_table[date] += 1
         else:
             dates_table[date] = 1
-        dates_table.to_pickle(f"tables_gisaid/samples_{sample_n}.pickle")
+        dates_table.to_pickle(f"{country}/tables_gisaid/samples_{sample_n}.pickle")
     else:
        dates_table = pd.DataFrame(1, index=["n_samples"], columns=[date])
-       dates_table.to_pickle(f"tables_gisaid/samples_{sample_n}.pickle")
+       dates_table.to_pickle(f"{country}/tables_gisaid/samples_{sample_n}.pickle")
 
 
 with open("refseq/EPI_ISL_402124.fasta") as f:
@@ -48,6 +48,7 @@ with open("refseq/EPI_ISL_402124.fasta") as f:
 vcfs = sys.argv[1:-1]
 sample_n = int(sys.argv[-1])
 total=len(vcfs)*30000
+country=open("country.txt").readline().strip()
 
 if len(vcfs) >= 0:
     n_vcf=0
@@ -65,7 +66,7 @@ if len(vcfs) >= 0:
         pos_list = dataframe["POS"].tolist()
         names = header[10:]
         dataframe = dataframe.iloc[:,10:]
-        os.system("mkdir -p tables_gisaid")
+        os.system(f"mkdir -p {country}/tables_gisaid")
         counter=0
         for name in names:
             counter+=1
@@ -75,8 +76,8 @@ if len(vcfs) >= 0:
                 samples_per_day(date,sample_n)
                 while True:
                     try:
-                        if os.path.exists(f"tables_gisaid/{date}.pickle"):
-                            table = pd.read_pickle(f"tables_gisaid/{date}.pickle")
+                        if os.path.exists(f"{country}/tables_gisaid/{date}.pickle"):
+                            table = pd.read_pickle(f"{country}/tables_gisaid/{date}.pickle")
                             create_table(table) 
                         else:
                             table = pd.DataFrame(0, np.arange(1,29904), columns=["A","G","C","T"])
