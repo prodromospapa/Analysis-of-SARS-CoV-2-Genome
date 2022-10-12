@@ -1,0 +1,7 @@
+snapgene-reader
+pandas
+statistics
+numpy
+datetime
+scipy
+statsmodels
