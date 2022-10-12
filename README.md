@@ -1,4 +1,5 @@
 # Instructions
+
 prerequirements: 1)all .sh must be run with 'bash *.sh' format (except 1_vcf_ncbi.sh)
                  2)Anaconda/minoconda must be installed in the system
                  3)Access to a sudo user is obligated if you run it for the first time in order to install the needed software using the 0_install_requirements.sh
