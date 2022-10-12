@@ -1,6 +1,6 @@
 import sys
 import pandas as pd
-samples_files_n = range(1,int(sys.argv[1])+1)
+samples_files_n = range(1,int(sys.argv[1]))
 country=open("country.txt").readline().strip()
 
 dates = []
