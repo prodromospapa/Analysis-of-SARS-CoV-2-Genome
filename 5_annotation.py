@@ -46,7 +46,7 @@ for day in dates:
         pos = pos_dict[label]
         number_of_diff = len(table.loc[pos[0]:pos[1]])
         final_table.at[label,day].append(number_of_diff)
-      print(f"{round(count/total,2)}%",end="\r")
+      print(f"\r{round(count/total,2)}%",end="")
     
 
 final_table = final_table.applymap(lambda x : statistics.mean(x))
