@@ -16,4 +16,3 @@ heatmap.2(as.matrix(data),
     Rowv=NULL,
     Colv=NULL)
 dev.off()
-dev.off()
