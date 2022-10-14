@@ -5,13 +5,12 @@
 #install medaka
 if [ ! "$(conda env list | grep thesis)" ]
 then
-    conda create -y -n thesis >/dev/null 2>&1
+    conda create -y -n thesis
 fi
 
 conda activate thesis
 
 #install bash software
-conda install -n thesis -y -c conda-forge python >/dev/null 2>&1
 conda install -n thesis -y -c bioconda -c conda-forge medaka >/dev/null 2>&1
 conda install -n thesis -y -c conda-forge unzip >/dev/null 2>&1
 conda install -n thesis -y -c bioconda sra-tools >/dev/null 2>&1
@@ -31,7 +30,7 @@ url=$(curl -s https://github.com/broadinstitute/gatk/releases \
     | tr -d \" \
     | head -n 1 \
     | sed 's/<\/strong> <a href=\(.*\)>gatk-\(.*\).zip<\/a><br>/\1/')
-if [ ! -d gatk-* ]
+if [[ ! -d gatk-* ]]
 then
     wget -q $url
     unzip -qq gatk-*.zip
