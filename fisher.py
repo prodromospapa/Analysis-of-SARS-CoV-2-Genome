@@ -10,14 +10,14 @@ import sys
 
 country=open("country.txt").readline().strip()
 sra_txt = sys.argv[1]
-counter = 0 
-total = os.popen(f"less {country}/SraAccList/SraAccList_01.txt | wc -l").read()
 os.system(f"mkdir -p {country}/p_tables")
 sra_list = open(sra_txt)
+vcf_list = os.popen("find vcf_ncbi/*/*.vcf").read().split("\n")[:-1]
+vcf_list = [i.split("/")[-1].strip('.vcf') for i in vcf_list ]
 
 for sample in sra_list:
-    counter += 1
-    try:
+    counter = os.popen(f"less {country}/p_tables/*/*.csv | wc -l").read()
+    if sample in vcf_list:
         date = os.popen(f"find {country}/vcf_ncbi/*/{sample.strip()}.vcf").read().split("/")[1]
         os.system(f"mkdir -p {country}/p_tables/{date}")
         if f"{sample.strip()}.csv" not in os.listdir(f"{country}/p_tables/{date}"):
@@ -63,8 +63,4 @@ for sample in sra_list:
             p_adjusted = fdrcorrection(fisher_list)[1]#p-value correction
             fisher_table = pd.DataFrame({'A':p_adjusted[0:29903],'G':p_adjusted[29903:2*29903],'C':p_adjusted[2*29903:3*29903],'T':p_adjusted[3*29903:4*29903]},index=np.arange(1,29904))
             fisher_table.to_csv(f"{country}/p_tables/{date}/{sample.strip()}.csv")
-    except Exception:
-        continue
-    if sra_txt == f"{country}/SraAccList/SraAccList_01.txt":
-        print(f"{round(counter/total,2)}%",end="")
 sra_list.close()

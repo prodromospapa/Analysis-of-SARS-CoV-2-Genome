@@ -1,6 +1,3 @@
-#https://github.com/Edinburgh-Genome-Foundry/SnapGeneReader
-#https://www.snapgene.com/resources/coronavirus-resources/?resource=SARS-CoV-2_(COVID-19)_Genome
-
 from snapgene_reader import snapgene_file_to_dict, snapgene_file_to_seqrecord
 import pandas as pd
 import os
