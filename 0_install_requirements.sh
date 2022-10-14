@@ -11,16 +11,16 @@ fi
 conda activate thesis
 
 #install bash software
-conda install -y -c conda-forge python >/dev/null 2>&1
-conda install -y -c bioconda -c conda-forge medaka >/dev/null 2>&1
-conda install -y -c conda-forge unzip >/dev/null 2>&1
-conda install -y -c bioconda sra-tools >/dev/null 2>&1
-conda install -y -c bioconda mafft >/dev/null 2>&1
-conda install -y -c bioconda bwa >/dev/null 2>&1
-conda install -y -c bioconda bcftools >/dev/null 2>&1
-conda install -y -c bioconda snp-sites >/dev/null 2>&1
-conda install -y -c bioconda entrez-direct >/dev/null 2>&1
-conda install -y -c bioconda samtools >/dev/null 2>&1
+conda install -n thesis -y -c conda-forge python >/dev/null 2>&1
+conda install -n thesis  -y -c bioconda -c conda-forge medaka >/dev/null 2>&1
+conda install -n thesis -y -c conda-forge unzip >/dev/null 2>&1
+conda install -n thesis  -y -c bioconda sra-tools >/dev/null 2>&1
+conda install -n thesis  -y -c bioconda mafft >/dev/null 2>&1
+conda install -n thesis -y -c bioconda bwa >/dev/null 2>&1
+conda install -n thesis -y -c bioconda bcftools >/dev/null 2>&1
+conda install -n thesis -y -c bioconda snp-sites >/dev/null 2>&1
+conda install -n thesis -y -c bioconda entrez-direct >/dev/null 2>&1
+conda install -n thesis -y -c bioconda samtools >/dev/null 2>&1
 
 function ver { printf "%03d%03d%03d%03d" $(echo "$1" | tr '.' ' '); }
 
@@ -51,7 +51,7 @@ fi
 
 
 #install python libraries
-conda install --file requirements.txt >/dev/null 2>&1
+conda install -n thesis --file requirements.txt >/dev/null 2>&1
 #conda install pip --file requirements.txt >/dev/null 2>&1
 
 
