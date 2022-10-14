@@ -19,7 +19,11 @@ conda activate thesis
 #install bash software
 cat conda.txt | while read lib
     do
-    conda install -n thesis -y -c $lib >/dev/null 2>&1
+    lib_name=$(echo $lib | rev |cut -d ' ' -f 1 | rev)
+    if [[ $(conda list -n thesis $lib_name | wc -l) -eq 3 ]]
+    then
+        conda install -n thesis -y -c $lib >/dev/null 2>&1
+        fi
 done
 
 function ver { printf "%03d%03d%03d%03d" $(echo "$1" | tr '.' ' '); }
@@ -39,7 +43,7 @@ then
 else
     currentver=$(find gatk-*/ | head -1 | cut -d \- -f 2 | sed 's/\///')
     requiredver=$(echo $url | cut -d / -f 8)
-    if [ $(ver $currentver) -lt $(ver $requiredver) ]
+    if [[ $(ver $currentver) -lt $(ver $requiredver) ]]
     then
         rm -r gatk-*
         wget -q $url
