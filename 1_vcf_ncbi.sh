@@ -31,11 +31,6 @@ then
     $gatk "-Xmx${ram}G" CreateSequenceDictionary -R refseq/$refseq.fasta -O refseq/$refseq.dict &> /dev/null
 fi
 
-if [  $CONDA_DEFAULT_ENV != medaka ]
-then
-    conda activate medaka
-fi
-
 command=""
 
 for text in SraAccList/*
