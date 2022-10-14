@@ -14,10 +14,7 @@ then
     conda create -y -n thesis >/dev/null 2>&1
 fi
 
-if [  $CONDA_DEFAULT_ENV != medaka ]
-then
-    conda activate thesis
-fi
+conda activate thesis
 
 #install bash software
 cat conda.txt | while read lib
