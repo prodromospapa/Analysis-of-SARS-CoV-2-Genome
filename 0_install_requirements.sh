@@ -2,6 +2,8 @@
 #https://docs.conda.io/projects/conda/en/latest/user-guide/install/linux.html
 #https://docs.conda.io/en/latest/miniconda.html
 
+conda deactivate
+
 #install python libraries
 pip install -r requirements.txt >/dev/null 2>&1
 
