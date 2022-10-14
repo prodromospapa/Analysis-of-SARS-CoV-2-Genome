@@ -12,10 +12,10 @@ conda activate thesis
 
 #install bash software
 conda install -n thesis -y -c conda-forge python >/dev/null 2>&1
-conda install -n thesis  -y -c bioconda -c conda-forge medaka >/dev/null 2>&1
+conda install -n thesis -y -c bioconda -c conda-forge medaka >/dev/null 2>&1
 conda install -n thesis -y -c conda-forge unzip >/dev/null 2>&1
-conda install -n thesis  -y -c bioconda sra-tools >/dev/null 2>&1
-conda install -n thesis  -y -c bioconda mafft >/dev/null 2>&1
+conda install -n thesis -y -c bioconda sra-tools >/dev/null 2>&1
+conda install -n thesis -y -c bioconda mafft >/dev/null 2>&1
 conda install -n thesis -y -c bioconda bwa >/dev/null 2>&1
 conda install -n thesis -y -c bioconda bcftools >/dev/null 2>&1
 conda install -n thesis -y -c bioconda snp-sites >/dev/null 2>&1
