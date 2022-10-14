@@ -1,0 +1,9 @@
+bioconda -c conda-forge medaka
+conda-forge unzip
+bioconda sra-tools
+bioconda mafft
+bioconda bwa
+bioconda bcftools
+bioconda snp-sites
+bioconda entrez-direct
+bioconda samtools

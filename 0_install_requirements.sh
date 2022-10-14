@@ -2,25 +2,25 @@
 #https://docs.conda.io/projects/conda/en/latest/user-guide/install/linux.html
 #https://docs.conda.io/en/latest/miniconda.html
 
+#install python libraries
+pip install -r requirements.txt >/dev/null 2>&1
+
+#install R libraries
+Rscript -e 'install.packages("gplots")' >/dev/null 2>&1
+
 #install medaka
 if [ ! "$(conda env list | grep thesis)" ]
 then
-    conda create -y -n thesis
+    conda create -y -n thesis >/dev/null 2>&1
 fi
 
 conda activate thesis
 
 #install bash software
-conda install -n thesis -y -c bioconda -c conda-forge medaka >/dev/null 2>&1
-conda install -n thesis -y -c conda-forge unzip >/dev/null 2>&1
-conda install -n thesis -y -c bioconda sra-tools >/dev/null 2>&1
-conda install -n thesis -y -c bioconda mafft >/dev/null 2>&1
-conda install -n thesis -y -c bioconda bwa >/dev/null 2>&1
-conda install -n thesis -y -c bioconda bcftools >/dev/null 2>&1
-conda install -n thesis -y -c bioconda snp-sites >/dev/null 2>&1
-conda install -n thesis -y -c bioconda entrez-direct >/dev/null 2>&1
-conda install -n thesis -y -c bioconda samtools >/dev/null 2>&1
-
+cat conda.txt | while read lib
+    do
+    conda install -n thesis -y -c $lib >/dev/null 2>&1
+done
 
 function ver { printf "%03d%03d%03d%03d" $(echo "$1" | tr '.' ' '); }
 
@@ -49,11 +49,4 @@ else
 fi
 
 
-
-#install python libraries
-pip install -r requirements.txt >/dev/null 2>&1
-#conda install pip --file requirements.txt >/dev/null 2>&1
-
-
-#install R libraries
-Rscript -e 'install.packages("gplots")' >/dev/null 2>&1
+echo all done
