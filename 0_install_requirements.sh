@@ -21,6 +21,7 @@ conda install -n thesis -y -c bioconda snp-sites >/dev/null 2>&1
 conda install -n thesis -y -c bioconda entrez-direct >/dev/null 2>&1
 conda install -n thesis -y -c bioconda samtools >/dev/null 2>&1
 
+
 function ver { printf "%03d%03d%03d%03d" $(echo "$1" | tr '.' ' '); }
 
 #download latest gatk
@@ -50,7 +51,7 @@ fi
 
 
 #install python libraries
-conda install -n thesis --file requirements.txt >/dev/null 2>&1
+pip install -r requirements.txt >/dev/null 2>&1
 #conda install pip --file requirements.txt >/dev/null 2>&1
 
 
