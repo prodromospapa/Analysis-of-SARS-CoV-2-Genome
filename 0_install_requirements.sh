@@ -1,5 +1,26 @@
 #install minoconda manually
 #https://docs.conda.io/projects/conda/en/latest/user-guide/install/linux.html
+#https://docs.conda.io/en/latest/miniconda.html
+
+#install medaka
+if [ ! "$(conda env list | grep thesis)" ]
+then
+    conda create -y -n thesis >/dev/null 2>&1
+fi
+
+conda activate thesis
+
+#install bash software
+conda install -y -c conda-forge python >/dev/null 2>&1
+conda install -y -c bioconda -c conda-forge medaka >/dev/null 2>&1
+conda install -y -c conda-forge unzip >/dev/null 2>&1
+conda install -y -c bioconda sra-tools >/dev/null 2>&1
+conda install -y -c bioconda mafft >/dev/null 2>&1
+conda install -y -c bioconda bwa >/dev/null 2>&1
+conda install -y -c bioconda bcftools >/dev/null 2>&1
+conda install -y -c bioconda snp-sites >/dev/null 2>&1
+conda install -y -c bioconda entrez-direct >/dev/null 2>&1
+conda install -y -c bioconda samtools >/dev/null 2>&1
 
 function ver { printf "%03d%03d%03d%03d" $(echo "$1" | tr '.' ' '); }
 
@@ -28,25 +49,9 @@ else
 fi
 
 
-#install bash software
-sudo apt-get install -y sra-toolkit >/dev/null 2>&1
-sudo apt-get install -y mafft >/dev/null 2>&1
-sudo apt-get install -y bwa >/dev/null 2>&1
-sudo apt-get install -y bcftools >/dev/null 2>&1
-sudo apt-get install -y snp-sites >/dev/null 2>&1
-sudo apt-get install -y ncbi-entrez-direct >/dev/null 2>&1
-sudo apt-get install -y samtools >/dev/null 2>&1
-sudo apt-get install -y bwa >/dev/null 2>&1
-#here it can be changed to anaconda install for no sudo users
-
-#install medaka
-if [ ! "$(conda env list | grep medaka)" ]
-then
-    conda create -n medaka -c conda-forge -c bioconda medaka
-fi
 
 #install python libraries
-pip install -r requirements.txt >/dev/null 2>&1
+conda install --file requirements.txt >/dev/null 2>&1
 #conda install pip --file requirements.txt >/dev/null 2>&1
 
 

@@ -1,4 +1,4 @@
-from snapgene_reader import snapgene_file_to_dict, snapgene_file_to_seqrecord
+from snapgene_reader import snapgene_file_to_dict
 import pandas as pd
 import os
 import datetime
