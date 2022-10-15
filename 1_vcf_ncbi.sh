@@ -31,6 +31,8 @@ then
     $gatk "-Xmx${ram}G" CreateSequenceDictionary -R refseq/$refseq.fasta -O refseq/$refseq.dict &> /dev/null
 fi
 
+counda activate thesis
+
 command=""
 
 for text in $country/SraAccList/*
