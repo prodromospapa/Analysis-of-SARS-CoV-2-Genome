@@ -11,12 +11,12 @@ pip install -r requirements.txt >/dev/null 2>&1
 Rscript -e 'install.packages("gplots")' >/dev/null 2>&1
 
 #install medaka
-if [ ! "$(conda env list | grep thesis)" ]
+if [[ ! $(conda env list | grep thesis) ]]
 then
     conda create -y -n thesis >/dev/null 2>&1
 fi
 
-conda activate thesis
+conda activate thesis 
 
 #install bash software
 cat conda.txt | while read lib
@@ -25,7 +25,7 @@ cat conda.txt | while read lib
     if [[ $(conda list -n thesis $lib_name | wc -l) -eq 3 ]]
     then
         conda install -n thesis -y -c $lib >/dev/null 2>&1
-        fi
+    fi
 done
 
 function ver { printf "%03d%03d%03d%03d" $(echo "$1" | tr '.' ' '); }
@@ -37,7 +37,7 @@ url=$(curl -s https://github.com/broadinstitute/gatk/releases \
     | tr -d \" \
     | head -n 1 \
     | sed 's/<\/strong> <a href=\(.*\)>gatk-\(.*\).zip<\/a><br>/\1/')
-if [[ ! -d gatk-* ]]
+if [ ! -d gatk-* ]
 then
     wget -q $url
     unzip -qq gatk-*.zip
