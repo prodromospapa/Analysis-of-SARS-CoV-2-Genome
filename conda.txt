@@ -1,6 +1,6 @@
 bioconda -c conda-forge medaka
 conda-forge unzip
-bioconda sra-tools
+"bioconda/label/main" sra-tools
 bioconda mafft
 bioconda bwa
 bioconda bcftools
