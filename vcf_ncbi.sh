@@ -7,11 +7,11 @@ total_ram=$(grep MemTotal /proc/meminfo | awk '{print $2}')
 total_ram_opt=$(echo "0.6*$total_ram/1" | bc)
 ram=$(($total_ram_opt/$cpu_opt))
 
-sras=$(wc -l < SraAccList/SraAccList_01.txt)
- 
 refseq="NC_045512.2"
 country=$(less country.txt)
 qual=30
+
+sras=$(wc -l < $country/SraAccList/SraAccList_01.txt)
 
 shopt -s extglob #required for rm !()
 counter=0

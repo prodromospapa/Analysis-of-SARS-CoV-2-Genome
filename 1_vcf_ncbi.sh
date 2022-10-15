@@ -16,7 +16,7 @@ then
     sras=$(wc -l < SraAccList.txt)
     rounded="$((($sras / 1000 + 1) *1000))"
     lines=$(($rounded/$cpu_opt))
-    mkdir -p $country/$SraAccList
+    mkdir -p $country/SraAccList
     split -l $lines --numeric-suffixes=1 SraAccList.txt $country/SraAccList/SraAccList_ --additional-suffix=.txt
     rm SraAccList.txt
 fi
@@ -33,7 +33,7 @@ fi
 
 command=""
 
-for text in SraAccList/*
+for text in $country/SraAccList/*
 do 
     command="$command bash vcf_ncbi.sh $text &"
 done
