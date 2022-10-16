@@ -7,7 +7,7 @@ cpu_opt=$(echo "0.6*$cpu/1" | bc)
 path=$(pwd)
 
 tar xf hCoV-19_msa_*.tar.xz --wildcards 'msa_*/msa_*.fa*' -O | grep -A 1 ">.*/$country/.*/.*|.*|.*-.*-.*|.*" | awk 'length($0)>10'  > $country/$country.fasta 
-mkdir -p fasta
+mkdir -p $country/fasta
 split -l60000 --numeric-suffixes=1 $country/$country.fasta $country/fasta/$country --additional-suffix=.fasta
 
 rm $country/$country.fasta
