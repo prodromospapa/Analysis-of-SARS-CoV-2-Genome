@@ -48,5 +48,4 @@ do
 	echo $counter > vcf_progress_$file_number.txt
 done
 
-rm vcf_progress_$file_number.txt
 echo $file_number done

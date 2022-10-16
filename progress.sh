@@ -1,8 +1,15 @@
-country=$1
-total=$2
-counter=$3
-while [ $counter -le $total ]
+total=$1
+count=$(eval $2)
+while [ "$count" -lt "$total" ]
     do
-    counter=$3
-    printf %.2f%%\\r "$(($counter*1000/$total))e-1"
+    if [[ $count =~ ^[0-9]+$ ]]
+    then
+        error=$count
+    fi
+    count=$(eval $2)
+    if ! [[ $count =~ ^[0-9]+$ ]]
+    then
+        count=$error
+    fi
+    printf %.2f%%\\r "$(($count*1000/$total))e-1"
 done

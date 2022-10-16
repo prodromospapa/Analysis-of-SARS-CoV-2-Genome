@@ -34,7 +34,6 @@ fi
 conda activate thesis
 
 command=""
-counter="paste -d+"
 total=0
 
 for text in $country/SraAccList/*
@@ -42,15 +41,14 @@ do
     sras=$(less $text | wc -l)
     total=$(($total+$sras))
     file_number=$(echo ${text%.*} | tail -c3)
-    touch vcf_progress_$file_number.txt
-    counter="$counter vcf_progress_$file_number.txt "
+    echo 0 > vcf_progress_$file_number.txt
     command="$command bash vcf_ncbi.sh $text > out.log 2> err.log &"
 done
 
-counter="$counter | bc"
-eval " $command bash progress.sh $country $total $counter"
+eval " $command bash progress.sh $total 'paste -d+ vcf_progress_*.txt| bc'"
 
 wait
 rm out.log
 rm err.log
+rm vcf_progress_*.txt
 echo all done 

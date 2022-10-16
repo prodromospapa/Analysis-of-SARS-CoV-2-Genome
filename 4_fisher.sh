@@ -1,7 +1,7 @@
 country=$(less country.txt)
 total=$(find $country/vcf_ncbi/*/*.vcf | wc -l)
 counter=$(find $country/p_tables/*/*.csv | wc -l)
-command="bash progress.sh $country $total $counter & "
+command="bash progress.sh $total $counter & "
 
 for text in $country/SraAccList/*
 do 
