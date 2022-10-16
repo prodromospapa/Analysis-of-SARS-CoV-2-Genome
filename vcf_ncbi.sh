@@ -28,20 +28,20 @@ do
 			then
 			if [[  $day = [0-9]* ]] 
 				then 
-				prefetch $sra -O $country/vcf_ncbi/$day > out.log 2> err.log
-				fastq-dump --stdout --accession $country/vcf_ncbi/$day/$sra > $country/vcf_ncbi/$day/$sra/$sra.fastq > out.log 2> err.log
+				prefetch $sra -O $country/vcf_ncbi/$day 
+				fastq-dump --stdout --accession $country/vcf_ncbi/$day/$sra > $country/vcf_ncbi/$day/$sra/$sra.fastq 
 				if [ $seq_tool_name = "ILLUMINA" ]
 					then
-					bwa mem -t 1 -M -R "@RG\tID:"$sra"\tLB:"$sra"\tPL:ILLUMINA\tPM:HISEQ\tSM:"$sra"" refseq/$refseq.fasta $country/vcf_ncbi/$day/$sra/$sra.fastq 2>/dev/null > vcf_ncbi/$day/$sra/$sra.sam 
-					$gatk "-Xmx${ram}k" SortSam -I $country/vcf_ncbi/$day/$sra/$sra.sam -O $country/vcf_ncbi/$day/$sra/$sra.sorted.bam -SO coordinate > out.log 2> err.log
-					$gatk "-Xmx${ram}k" CollectAlignmentSummaryMetrics -R refseq/$refseq.fasta -I $country/vcf_ncbi/$day/$sra/$sra.sorted.bam -O $country/vcf_ncbi/$day/$sra/$sra.alignment.metrics.txt > out.log 2> err.log
-					$gatk "-Xmx${ram}k" MarkDuplicates -I $country/vcf_ncbi/$day/$sra/$sra.sorted.bam -O $country/vcf_ncbi/$day/$sra/calls_to_draft.bam -M $country/vcf_ncbi/$day/$sra/$sra.dupl.metrics.txt > out.log 2> err.log
+					bwa mem -t 1 -M -R "@RG\tID:"$sra"\tLB:"$sra"\tPL:ILLUMINA\tPM:HISEQ\tSM:"$sra"" refseq/$refseq.fasta $country/vcf_ncbi/$day/$sra/$sra.fastq  > vcf_ncbi/$day/$sra/$sra.sam 
+					$gatk "-Xmx${ram}k" SortSam -I $country/vcf_ncbi/$day/$sra/$sra.sam -O $country/vcf_ncbi/$day/$sra/$sra.sorted.bam -SO coordinate 
+					$gatk "-Xmx${ram}k" CollectAlignmentSummaryMetrics -R refseq/$refseq.fasta -I $country/vcf_ncbi/$day/$sra/$sra.sorted.bam -O $country/vcf_ncbi/$day/$sra/$sra.alignment.metrics.txt 
+					$gatk "-Xmx${ram}k" MarkDuplicates -I $country/vcf_ncbi/$day/$sra/$sra.sorted.bam -O $country/vcf_ncbi/$day/$sra/calls_to_draft.bam -M $country/vcf_ncbi/$day/$sra/$sra.dupl.metrics.txt 
 				elif [ $seq_tool_name = "OXFORD_NANOPORE" ]
 					then
-					medaka_consensus -t 1 -i $country/vcf_ncbi/$day/$sra/$sra.fastq -d  refseq/$refseq.fasta -o $country/vcf_ncbi/$day/$sra > out.log 2> err.log					
+					medaka_consensus -t 1 -i $country/vcf_ncbi/$day/$sra/$sra.fastq -d  refseq/$refseq.fasta -o $country/vcf_ncbi/$day/$sra 					
 				fi
 			fi
-		bcftools mpileup -Q $qual -d 100000 -a AD --skip-indels --fasta-ref refseq/$refseq.fasta $country/vcf_ncbi/$day/$sra/calls_to_draft.bam 2>/dev/null >  $country/vcf_ncbi/$day/$sra.vcf
+		bcftools mpileup -Q $qual -d 100000 -a AD --skip-indels --fasta-ref refseq/$refseq.fasta $country/vcf_ncbi/$day/$sra/calls_to_draft.bam  >  $country/vcf_ncbi/$day/$sra.vcf
 		rm -r $country/vcf_ncbi/$day/$sra/
 		fi
 	fi

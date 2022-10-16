@@ -44,7 +44,7 @@ do
     file_number=$(echo ${text%.*} | tail -c3)
     touch vcf_progress_$file_number.txt
     counter="$counter vcf_progress_$file_number.txt "
-    command="$command bash vcf_ncbi.sh $text &"
+    command="$command bash vcf_ncbi.sh $text > out.log 2> err.log &"
 done
 
 counter="$counter | bc"
