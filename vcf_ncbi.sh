@@ -46,7 +46,7 @@ do
 		rm -r $country/vcf_ncbi/$day/$sra/
 		fi
 	fi
-	if [ $text_file == "SraAccList/SraAccList_01.txt" ]
+	if [ $text_file == "$country/SraAccList/SraAccList_01.txt" ]
 		then
 		printf %.2f%%\\r "\r$(($counter*1000/$sras))e-1"
 	fi
