@@ -52,5 +52,4 @@ do
 	fi
 done
 
-filename=${text_file%.*}
-echo ${filename:22:22} done
+echo $(echo ${text_file%.*} | tail -c3) done
