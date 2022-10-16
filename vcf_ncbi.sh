@@ -11,11 +11,10 @@ refseq="NC_045512.2"
 country=$(less country.txt)
 qual=30
 
-sras=$(wc -l < $country/SraAccList/SraAccList_01.txt)
-
 shopt -s extglob #required for rm !()
 counter=0
 text_file=$1
+file_number=$(echo ${text_file%.*} | tail -c3)
 
 cat $text_file | while read sra
 do
@@ -46,10 +45,8 @@ do
 		rm -r $country/vcf_ncbi/$day/$sra/
 		fi
 	fi
-	if [ $text_file == "$country/SraAccList/SraAccList_01.txt" ]
-		then
-		printf %.2f%%\\r "\r$(($counter*1000/$sras))e-1"
-	fi
+	echo $counter > vcf_progress_$file_number.txt
 done
 
-echo $(echo ${text_file%.*} | tail -c3) done
+rm vcf_progress_$file_number.txt
+echo $file_number done
