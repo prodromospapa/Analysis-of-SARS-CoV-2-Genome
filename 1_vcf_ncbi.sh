@@ -31,7 +31,7 @@ then
     $gatk "-Xmx${ram}G" CreateSequenceDictionary -R refseq/$refseq.fasta -O refseq/$refseq.dict &> /dev/null
 fi
 
-counda activate thesis
+conda activate thesis
 
 command=""
 
