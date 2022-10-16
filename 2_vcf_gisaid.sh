@@ -30,3 +30,4 @@ done
 rm -d tmp
 rm -r $country/fasta
 rm -r $country/mafft
+echo all done
