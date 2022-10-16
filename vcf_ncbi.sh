@@ -29,8 +29,8 @@ do
 			then
 			if [[  $day = [0-9]* ]] 
 				then 
-				prefetch $sra -O $country/vcf_ncbi/$day 2>/dev/null
-				fastq-dump --stdout --accession $country/vcf_ncbi/$day/$sra > $country/vcf_ncbi/$day/$sra/$sra.fastq 2>/dev/null
+				prefetch $sra -O $country/vcf_ncbi/$day > out.log 2> err.log
+				fastq-dump --stdout --accession $country/vcf_ncbi/$day/$sra > $country/vcf_ncbi/$day/$sra/$sra.fastq > out.log 2> err.log
 				if [ $seq_tool_name = "ILLUMINA" ]
 					then
 					bwa mem -t 1 -M -R "@RG\tID:"$sra"\tLB:"$sra"\tPL:ILLUMINA\tPM:HISEQ\tSM:"$sra"" refseq/$refseq.fasta $country/vcf_ncbi/$day/$sra/$sra.fastq 2>/dev/null > vcf_ncbi/$day/$sra/$sra.sam 
