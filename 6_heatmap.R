@@ -1,4 +1,4 @@
-library("gplots")
+suppressMessages(library("gplots"))
 options(warn=-1)
 country <- toString(read.table("country.txt"))[1]
 
@@ -15,4 +15,4 @@ heatmap.2(as.matrix(data),
     dendogram='none',
     Rowv=NULL,
     Colv=NULL)
-dev.off()
+garbage <- dev.off()
