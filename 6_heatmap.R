@@ -5,7 +5,7 @@ country <- toString(read.table("country.txt"))[1]
 data <- read.table(paste(country,"/heatmap/heatmap.csv",sep=""),sep=",",header=TRUE,row.names=1,quote = "", stringsAsFactors = FALSE)
 colnames(data) <- as.Date(gsub("^X", "", colnames(data)),tryFormats = c("%m_%d_%Y"))
 
-pdf(file=paste(country,".pdf",sep=""))
+pdf(file=paste(country,"/",country,".pdf",sep=""))
 heatmap.2(as.matrix(data),
     scale="row", 
     key=T, 
@@ -16,5 +16,3 @@ heatmap.2(as.matrix(data),
     Rowv=NULL,
     Colv=NULL)
 dev.off()
-
-system("country.txt")
