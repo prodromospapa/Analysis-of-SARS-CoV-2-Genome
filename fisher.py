@@ -12,7 +12,7 @@ country=open("country.txt").readline().strip()
 sra_txt = sys.argv[1]
 os.system(f"mkdir -p {country}/p_tables")
 sra_list = open(sra_txt)
-vcf_list = os.popen("find vcf_ncbi/*/*.vcf").read().split("\n")[:-1]
+vcf_list = os.popen(f"find {country}/vcf_ncbi/*/*.vcf").read().split("\n")[:-1]
 vcf_list = [i.split("/")[-1].strip('.vcf') for i in vcf_list ]
 
 for sample in sra_list:

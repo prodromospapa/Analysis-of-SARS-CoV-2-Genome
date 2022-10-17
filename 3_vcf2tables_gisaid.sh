@@ -20,7 +20,7 @@ command=""
 
 for i in $country/vcf_gisaid/*
 do 
-    total=$(($total + $(sed '4q;d' $i | grep -o hCoV-19 | wc -l) ))
+    total=$(($total + $(sed '4q;d' $i | grep -o hCoV-19 | wc -l) - 1 ))
 done
 
 while [ $counter -le "${#vcfs[@]}" ]
