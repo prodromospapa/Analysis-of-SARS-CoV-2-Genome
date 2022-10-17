@@ -85,5 +85,4 @@ if len(vcfs) >= 0:
                     except Exception:
                         continue
                     break
-            if sample_n==1:
-                print(f"{round(n_vcf*counter/total,2)}%",end="\r")
+            os.system(f"echo {counter} > tables_progress_{sample_n}.txt")
