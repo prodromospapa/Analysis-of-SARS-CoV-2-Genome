@@ -19,7 +19,7 @@ mkdir -p $country/mafft
 mkdir -p $country/vcf_gisaid
 
 counter=0
-total="$(ls fasta | wc -l)"
+total="$(ls $country/fasta | wc -l)"
 for fasta in $country/fasta/*
 do	
 	counter=$((counter+1))

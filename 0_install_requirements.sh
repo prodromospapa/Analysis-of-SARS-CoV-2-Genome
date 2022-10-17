@@ -2,21 +2,18 @@
 #https://docs.conda.io/projects/conda/en/latest/user-guide/install/linux.html
 #https://docs.conda.io/en/latest/miniconda.html
 
-conda deactivate
-
-#install python libraries
-pip install -r requirements.txt >/dev/null 2>&1
-
-#install R libraries
-Rscript -e 'install.packages("gplots")' >/dev/null 2>&1
-
-#install medaka
 if [[ ! $(conda env list | grep thesis) ]]
 then
     conda create -y -n thesis >/dev/null 2>&1
 fi
 
 conda activate thesis 
+
+#install python libraries
+python3 -m pip install -r requirements.txt >/dev/null 2>&1
+
+#install R libraries
+Rscript -e 'install.packages("gplots")' >/dev/null 2>&1
 
 #install bash software
 cat conda.txt | while read lib
