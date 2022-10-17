@@ -16,3 +16,5 @@ heatmap.2(as.matrix(data),
     Rowv=NULL,
     Colv=NULL)
 dev.off()
+
+system("country.txt")
