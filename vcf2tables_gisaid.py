@@ -67,7 +67,9 @@ if len(vcfs) >= 0:
         names = header[10:]
         dataframe = dataframe.iloc[:,10:]
         os.system(f"mkdir -p {country}/tables_gisaid")
+        counter=0
         for name in names:
+            counter+=1
             date = name.split("|")[2]
             if validate(date):
                 date = datetime.datetime.strptime(date, '%Y-%m-%d').strftime("%m_%d_%Y") #matches ncbi day format
@@ -83,4 +85,4 @@ if len(vcfs) >= 0:
                     except Exception:
                         continue
                     break
-            os.system(f"echo {n_vcf} > tables_progress_{sample_n}.txt")
+            os.system(f"echo {counter} > tables_progress_{sample_n}.txt")

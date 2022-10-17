@@ -15,8 +15,13 @@ done
 
 counter=0
 samples=0
-total=$(find $country/vcf_ncbi/*/*.vcf | wc -l)
+total=0
 command=""
+
+for i in $country/vcf_gisaid/*
+do 
+    total=$(($total + $(sed '4q;d' $i | grep -o hCoV-19 | wc -l) ))
+done
 
 while [ $counter -le "${#vcfs[@]}" ]
 do
