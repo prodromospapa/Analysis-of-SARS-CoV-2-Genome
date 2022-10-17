@@ -1,4 +1,6 @@
-country=$(less country.txt)
+read -p 'country: ' country
+country="${country^}"
+echo $country > country.txt
 sralist=https://www.ncbi.nlm.nih.gov/sra/?term=txid2697049%5BOrganism%3Anoexp%5D+NOT+0%5BMbases%5D+AND+$country
 
 gatk='gatk-4.2.6.1/gatk --java-options' 
