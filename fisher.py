@@ -44,16 +44,19 @@ for sample in sra_list.read().split("\n")[:-1]:
                     except Exception:#if day doesn't exist
                         continue
                 pos_list = dataframe[1].tolist()
+                ref_list = dataframe[3].tolist()
                 alt_list = dataframe[4].tolist()
                 depth_list = dataframe[9].tolist()
                 ncbi = pd.DataFrame(0, np.arange(1,29904), columns=['A','G','C','T'])
                 for index in range(len(alt_list)):
                         pos = pos_list[index]
+                        ref_single = ref_list[index]
                         alt = alt_list[index].split(',')
                         depth = depth_list[index].split(":")[1].split(",")
                         for alt_single in alt:
                             if alt_single in ["A", "G", "C", "T"]:
                                 ncbi.at[pos,alt_single] += int(depth[alt.index(alt_single) + 1])
+                        ncbi.at[pos,ref_single] += int(depth[0])
 
                 N = n_samples_gisaid
                 fisher_list = []
