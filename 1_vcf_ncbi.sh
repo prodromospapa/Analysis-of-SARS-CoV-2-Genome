@@ -10,10 +10,7 @@ cpu_opt=$(echo "0.6*$cpu/1" | bc)
 
 if [ ! -d "$country/SraAccList" ]
 then
-    while [[ ! -f "SraAccList.txt" ]]
-    do
-        echo -ne $sralist'\r'
-    done
+    read -p '' $sralist
     sed -i '/^$/d' SraAccList.txt
     sras=$(wc -l < SraAccList.txt)
     rounded="$((($sras / 1000 + 1) *1000))"
