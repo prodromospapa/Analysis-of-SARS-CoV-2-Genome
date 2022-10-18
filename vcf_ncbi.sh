@@ -32,7 +32,7 @@ do
 				fastq-dump --stdout --accession $country/vcf_ncbi/$day/$sra > $country/vcf_ncbi/$day/$sra/$sra.fastq 
 				if [ $seq_tool_name = "ILLUMINA" ]
 					then
-					bwa mem -t 1 -M -R "@RG\tID:"$sra"\tLB:"$sra"\tPL:ILLUMINA\tPM:HISEQ\tSM:"$sra"" refseq/$refseq.fasta $country/vcf_ncbi/$day/$sra/$sra.fastq  > vcf_ncbi/$day/$sra/$sra.sam 
+					bwa mem -t 1 -M -R "@RG\tID:"$sra"\tLB:"$sra"\tPL:ILLUMINA\tPM:HISEQ\tSM:"$sra"" refseq/$refseq.fasta $country/vcf_ncbi/$day/$sra/$sra.fastq  > $country/vcf_ncbi/$day/$sra/$sra.sam 
 					$gatk "-Xmx${ram}k" SortSam -I $country/vcf_ncbi/$day/$sra/$sra.sam -O $country/vcf_ncbi/$day/$sra/$sra.sorted.bam -SO coordinate 
 					$gatk "-Xmx${ram}k" CollectAlignmentSummaryMetrics -R refseq/$refseq.fasta -I $country/vcf_ncbi/$day/$sra/$sra.sorted.bam -O $country/vcf_ncbi/$day/$sra/$sra.alignment.metrics.txt 
 					$gatk "-Xmx${ram}k" MarkDuplicates -I $country/vcf_ncbi/$day/$sra/$sra.sorted.bam -O $country/vcf_ncbi/$day/$sra/calls_to_draft.bam -M $country/vcf_ncbi/$day/$sra/$sra.dupl.metrics.txt 

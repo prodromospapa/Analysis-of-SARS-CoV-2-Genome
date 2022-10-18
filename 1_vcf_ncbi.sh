@@ -15,7 +15,7 @@ then
         echo -ne $sralist'\r'
     done
     sleep 1
-    printf ' %.0s\r' {1..${#sralist}}
+    echo
     sed -i '/^$/d' SraAccList.txt
     sras=$(wc -l < SraAccList.txt)
     rounded="$((($sras / 1000 + 1) *1000))"

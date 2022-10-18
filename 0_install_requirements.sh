@@ -18,7 +18,7 @@ Rscript -e 'install.packages("gplots")' >/dev/null 2>&1
 #install bash software
 cat conda.txt | while read lib
     do
-    lib_name=$(echo $lib | rev |cut -d ' ' -f 1 | rev)
+    lib_name=$(echo $lib | rev | cut -d ' ' -f 1 | rev)
     if [[ $(conda list -n thesis $lib_name | wc -l) -eq 3 ]]
     then
         conda install -n thesis -y -c $lib >/dev/null 2>&1
