@@ -10,7 +10,7 @@ cpu_opt=$(echo "0.6*$cpu/1" | bc)
 
 if [ ! -d "$country/SraAccList" ]
 then
-    while [ ! -f "SraAccList.txt" ]
+    while [[ ! -f "SraAccList.txt" ]]
     do
         echo -ne $sralist'\r'
     done
