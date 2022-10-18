@@ -30,7 +30,7 @@ then
     refseq="NC_045512"
     total_ram=$(grep MemTotal /proc/meminfo | awk '{print $2}')
     ram=$(echo "0.6*$total_ram/1" | bc)
-    esearch -db nucleotide -query "${refseq}" | efetch -format fasta > $country/refseq/$refseq.fasta
+    esearch -db nucleotide -query "${refseq}" | efetch -format fasta > refseq/$refseq.fasta
     bwa index refseq/$refseq.fasta refseq >/dev/null &> /dev/null
     samtools faidx refseq/$refseq.fasta refseq &> /dev/null
     $gatk "-Xmx${ram}G" CreateSequenceDictionary -R refseq/$refseq.fasta -O refseq/$refseq.dict &> /dev/null
