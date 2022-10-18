@@ -7,7 +7,7 @@ total_ram=$(grep MemTotal /proc/meminfo | awk '{print $2}')
 total_ram_opt=$(echo "0.6*$total_ram/1" | bc)
 ram=$(($total_ram_opt/$cpu_opt))
 
-refseq="NC_045512.2"
+refseq="NC_045512"
 country=$(less country.txt)
 qual=30
 

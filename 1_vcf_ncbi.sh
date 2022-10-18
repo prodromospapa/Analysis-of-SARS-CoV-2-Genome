@@ -25,11 +25,11 @@ then
     rm SraAccList.txt
 fi
 
-if [ ! -f "refseq/NC_045512.2.fasta" ]
+if [ ! -f "refseq/NC_045512.fasta" ]
 then
-    refseq="NC_045512.2"
-    ram=15
-    esearch -db nucleotide -query "${refseq}" | efetch -format fasta > refseq/$refseq.fasta
+    refseq="NC_045512"
+    ram=$(echo "0.6*$total_ram/1" | bc)
+    esearch -db nucleotide -query "${refseq}" | efetch -format fasta > $country/refseq/$refseq.fasta
     bwa index refseq/$refseq.fasta refseq >/dev/null &> /dev/null
     samtools faidx refseq/$refseq.fasta refseq &> /dev/null
     $gatk "-Xmx${ram}G" CreateSequenceDictionary -R refseq/$refseq.fasta -O refseq/$refseq.dict &> /dev/null
