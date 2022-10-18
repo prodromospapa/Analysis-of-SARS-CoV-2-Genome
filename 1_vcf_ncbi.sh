@@ -15,7 +15,7 @@ then
         echo -ne $sralist'\r'
     done
     sleep 1
-    echo
+    echo 
     sed -i '/^$/d' SraAccList.txt
     sras=$(wc -l < SraAccList.txt)
     rounded="$((($sras / 1000 + 1) *1000))"
@@ -28,6 +28,7 @@ fi
 if [ ! -f "refseq/NC_045512.fasta" ]
 then
     refseq="NC_045512"
+    total_ram=$(grep MemTotal /proc/meminfo | awk '{print $2}')
     ram=$(echo "0.6*$total_ram/1" | bc)
     esearch -db nucleotide -query "${refseq}" | efetch -format fasta > $country/refseq/$refseq.fasta
     bwa index refseq/$refseq.fasta refseq >/dev/null &> /dev/null
