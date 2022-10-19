@@ -1,4 +1,5 @@
-# Instructions
+Instructions
+======
 
 prerequirements: 1)all .sh must be run with 'bash *.sh' format (except 1_vcf_ncbi.sh)
                  2)Anaconda/minoconda must be installed in the system
