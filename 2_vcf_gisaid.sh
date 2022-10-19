@@ -36,7 +36,7 @@ do
 	for i in $(seq 1 $items_per_thread)
     do
         fastas2run="$fastas2run ${fastas[$counter]} "
-        counter=$(($counter+1))
+		counter=$(($counter+1))
     done
 	command="$command bash vcf_gisaid.sh $fastas2run"
 done
