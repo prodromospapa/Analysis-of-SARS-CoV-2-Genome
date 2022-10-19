@@ -30,10 +30,10 @@ for sample in sra_list.read().split("\n")[:-1]:
                 date_formated = datetime.datetime.strptime(date, "%m_%d_%Y")
                 first_date = date_formated - datetime.timedelta(days=3)
                 window = [datetime.datetime.strftime(first_date, "%m_%d_%Y")]
-                for i in range(1,7):
-                    window.append(datetime.datetime.strftime(first_date + datetime.timedelta(days=i), "%m_%d_%Y"))
+                window_days_range = 7
+                for day in range(1,window_days_range):
+                    window.append(datetime.datetime.strftime(first_date + datetime.timedelta(days=day), "%m_%d_%Y"))
                 #window list
-
                 gisaid = pd.DataFrame(0, np.arange(1,29904), columns=['A','G','C','T'])
                 n_samples_gisaid = 0
                 for day in window:
