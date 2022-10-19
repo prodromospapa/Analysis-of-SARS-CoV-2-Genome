@@ -44,7 +44,7 @@ do
 		rm -r $country/vcf_ncbi/$day/$sra/
 		fi
 	fi
-	echo $counter > vcf_progress_$file_number.txt
+	echo $counter > ncbi_progress_$file_number.txt
 done
 
 echo $file_number done

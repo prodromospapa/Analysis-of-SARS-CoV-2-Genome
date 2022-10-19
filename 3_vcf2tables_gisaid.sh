@@ -8,7 +8,7 @@ fi
 vcfs=($country/vcf_gisaid/*)
 
 items_per_thread=1
-while [ "${#vcfs[@]}" -gt "$(($items_per_thread*$cpu_opt))" ]
+while [ "${#vcfs}" -gt "$(($items_per_thread*$cpu_opt))" ]
 do
     items_per_thread=$((items_per_thread+1))
 done
@@ -23,7 +23,7 @@ do
     total=$(($total + $(sed '4q;d' $i | grep -o hCoV-19 | wc -l) - 1 ))
 done
 
-while [ $counter -le "${#vcfs[@]}" ]
+while [ $counter -le "${#vcfs}" ]
 do
     vcf2tables=""
     samples=$(($samples+1))
