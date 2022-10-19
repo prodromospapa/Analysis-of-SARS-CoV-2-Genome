@@ -15,4 +15,4 @@ It is recommended to run in a tmux session as most of the scripts may run for a 
 * Run 5_annotation.py using 'python3'
 * Run 6_heatmap.R using 'Rscript'
 
-After you have run all of the above you can find the heatmap graph in the country folder named after the country name
+After that you can find the heatmap graph in the country folder named after the country name in the directory
