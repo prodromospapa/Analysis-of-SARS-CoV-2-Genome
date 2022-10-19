@@ -65,7 +65,7 @@ for sample in sra_list.read().split("\n")[:-1]:
                     for base in ['A','G','C','T']:
                         A = int(gisaid.loc[pos][base])
                         x = int(ncbi.loc[pos][base])
-                        value_fisher,pvalue = fisher_exact([[x,n-x],[A,N-A]])#N = pos_gisaid_total, A = pos_gisaid_base, n = pos_ncbi_total, x = pos_ncbi_base
+                        pvalue = fisher_exact([[x,n-x],[A,N-A]])[1]#N = pos_gisaid_total, A = pos_gisaid_base, n = pos_ncbi_total, x = pos_ncbi_base
                         fisher_list.append(pvalue)
                 p_adjusted = fdrcorrection(fisher_list)[1]#p-value correction
                 fisher_table = pd.DataFrame({'A':p_adjusted[0:29903],'G':p_adjusted[29903:2*29903],'C':p_adjusted[2*29903:3*29903],'T':p_adjusted[3*29903:4*29903]},index=np.arange(1,29904))
