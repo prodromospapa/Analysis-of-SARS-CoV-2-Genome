@@ -2,7 +2,8 @@ country=$(less country.txt)
 refseq="EPI_ISL_402124"
 
 cpu=$(grep -c ^processor /proc/cpuinfo)
-cpu_opt=$(echo "0.6*$cpu/1" | bc)
+cpu_per=0.6
+cpu_opt=$(echo "$cpu_per*$cpu/1" | bc)
 
 path=$(pwd)
 

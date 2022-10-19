@@ -1,7 +1,9 @@
 Instructions
 ======
 
-Prerequirements: 
+Prerequirements:
+----------------
+
 * R and python must be installed in the system
 * Anaconda/miniconda must be installed in the system
 * Academic email to download GISAID msa file

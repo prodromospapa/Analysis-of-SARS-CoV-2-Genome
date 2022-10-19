@@ -5,7 +5,8 @@ sralist=https://www.ncbi.nlm.nih.gov/sra/?term=txid2697049%5BOrganism%3Anoexp%5D
 
 gatk='gatk-4.2.6.1/gatk --java-options' 
 cpu=$(grep -c ^processor /proc/cpuinfo)
-cpu_opt=$(echo "0.6*$cpu/1" | bc)
+cpu_per=0.6
+cpu_opt=$(echo "$cpu_per*$cpu/1" | bc)
 
 
 if [ ! -d "$country/SraAccList" ]

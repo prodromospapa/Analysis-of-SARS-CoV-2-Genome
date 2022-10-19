@@ -1,15 +1,14 @@
 gatk='gatk-*/gatk --java-options' 
 
-cpu=$(grep -c ^processor /proc/cpuinfo)
-cpu_opt=$(echo "0.6*$cpu/1" | bc)
-
-total_ram=$(grep MemTotal /proc/meminfo | awk '{print $2}')
-total_ram_opt=$(echo "0.6*$total_ram/1" | bc)
-ram=$(($total_ram_opt/$cpu_opt))
-
 refseq="NC_045512"
 country=$(less country.txt)
 qual=30
+
+cpu_opt=$(find $country/SraAccList/* | wc -l)
+total_ram=$(grep MemTotal /proc/meminfo | awk '{print $2}')
+ram_per=0.6
+total_ram_opt=$(echo "$ram_per*$total_ram/1" | bc)
+ram=$(($total_ram_opt/$cpu_opt))
 
 shopt -s extglob #required for rm !()
 counter=0
