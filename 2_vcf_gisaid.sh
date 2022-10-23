@@ -28,9 +28,9 @@ done
 counter=0
 command=""
 echo 0 > gisaid_progress.txt
-total=${#fastas}
+total=$(echo $country/fasta/* | wc -l)
 
-while [ $counter -le "${#fastas}" ]
+while [ $counter -le $total ]
 do
 	fastas2run=""
 	for i in $(seq 1 $items_per_thread)
@@ -38,7 +38,10 @@ do
         fastas2run="$fastas2run ${fastas[$counter]} "
 		counter=$(($counter+1))
     done
-	command="$command bash vcf_gisaid.sh $fastas2run"
+  if [ ! $fastas2run == "" ]
+  then
+    command="$command bash vcf_gisaid.sh $fastas2run > out.log 2> err.log &"
+  fi
 done
 
 eval " $command bash progress.sh $total 'paste -d+ gisaid_progress.txt| bc' "
