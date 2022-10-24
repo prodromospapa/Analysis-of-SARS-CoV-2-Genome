@@ -51,4 +51,6 @@ rm gisaid_progress.txt
 rm -d tmp
 rm -r $country/fasta
 rm -r $country/mafft
+rm out.log
+rm err.log
 echo all done
