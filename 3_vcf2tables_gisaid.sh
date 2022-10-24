@@ -46,6 +46,4 @@ python3 merge_samples.py $counter
 rm $country/tables_gisaid/samples_*.pickle
 
 rm tables_progress_*.txt
-rm out.log
-rm err.log
 echo all done 
