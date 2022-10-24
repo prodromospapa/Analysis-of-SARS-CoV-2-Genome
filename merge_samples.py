@@ -8,7 +8,7 @@ dates = []
 for sample_n in samples_files_n:
     dates += pd.read_pickle(f"{country}/tables_gisaid/{sample_n}").columns.tolist()
 
-dates = set(dates)
+dates = list(set(dates))
 samples = pd.DataFrame(0, index=['n_samples'], columns=dates)
 for sample_n in samples_files_n:
     table = pd.read_pickle(f"{country}/tables_gisaid/{sample_n}")

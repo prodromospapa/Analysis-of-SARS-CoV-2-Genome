@@ -45,5 +45,5 @@ wait
 python3 merge_samples.py $counter
 rm $country/tables_gisaid/samples_*.pickle
 
-rm vcf_progress_*.txt
+rm tables_progress_*.txt
 echo all done 
