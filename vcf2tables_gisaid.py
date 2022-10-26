@@ -24,7 +24,7 @@ def create_table(table):
             if base in ["A","G","C","T"]:
                 table.at[base_pos,base] += 1
         else:
-            base = ref[index]
+            base = ref_list[index]#new
             table.at[base_pos,base] += 1
     table.to_pickle(f"{country}/tables_gisaid/{date}.pickle")
     
@@ -41,9 +41,9 @@ def samples_per_day(date,sample_n):#function to count number of samples each day
        dates_table.to_pickle(f"{country}/tables_gisaid/samples_{sample_n}.pickle")
 
 
-with open("refseq/EPI_ISL_402124.fasta") as f:
-    f.readline()
-    ref = f.readline().strip()
+#with open("refseq/EPI_ISL_402124.fasta") as f:
+#    f.readline()
+#    ref = f.readline().strip()
 
 vcfs = sys.argv[1:-1]
 sample_n = int(sys.argv[-1])
@@ -64,6 +64,7 @@ if len(vcfs) >= 0:
 
         alt_list = dataframe["ALT"].tolist()
         pos_list = dataframe["POS"].tolist()
+        ref_list = dataframe["REF"].tolist()#new
         names = header[10:]
         dataframe = dataframe.iloc[:,10:]
         os.system(f"mkdir -p {country}/tables_gisaid")
