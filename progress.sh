@@ -11,5 +11,5 @@ while [ "$count" -lt "$total" ]
     then
         count=$error
     fi
-    printf %.2f%%\\r "$(($count*1000/$total))e-1"
+    printf %.2f%%\\r "$(($count*10000/$total))e-2"
 done
