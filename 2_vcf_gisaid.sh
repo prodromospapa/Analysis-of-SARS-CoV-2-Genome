@@ -28,7 +28,7 @@ done
 counter=0
 command=""
 echo 0 > gisaid_progress.txt
-total=$(echo $country/fasta/* | wc -l)
+total=$(echo $country/fasta/* | wc -w)
 
 while [ $counter -le $total ]
 do
