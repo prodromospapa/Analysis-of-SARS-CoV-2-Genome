@@ -38,7 +38,7 @@ do
         fastas2run="$fastas2run ${fastas[$counter]} "
 		counter=$(($counter+1))
     done
-  if [ ! $fastas2run == "" ]
+  if [ ! "$fastas2run" == "" ]
   then
     command="$command bash vcf_gisaid.sh $fastas2run > out.log 2> err.log &"
   fi
