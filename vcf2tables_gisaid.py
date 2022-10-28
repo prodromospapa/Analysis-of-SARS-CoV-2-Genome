@@ -82,3 +82,4 @@ if len(vcfs) >= 0:
                         continue
                     break
             os.system(f"echo {counter} > tables_progress_{sample_n}.txt")
+counter.close()
