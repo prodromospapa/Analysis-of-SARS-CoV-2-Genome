@@ -1,7 +1,7 @@
 Instructions
 ======
 
-Prerequirements:
+Prerequirements
 ----------------
 
 * Python must be installed in the system
