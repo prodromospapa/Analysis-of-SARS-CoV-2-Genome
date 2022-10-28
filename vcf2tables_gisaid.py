@@ -63,7 +63,7 @@ if len(vcfs) >= 0:
         names = header[10:]
         dataframe = dataframe.iloc[:,10:]
         os.system(f"mkdir -p {country}/tables_gisaid")
-        counter=0
+        counter=int(open(f"tables_progress_{sample_n}.txt").read().strip())
         for name in names:
             counter+=1
             date = name.split("|")[2]
