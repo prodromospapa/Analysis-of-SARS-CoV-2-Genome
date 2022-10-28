@@ -31,7 +31,11 @@ do
     for i in $(seq 1 $items_per_thread)
     do
         counter=$(($counter+1))
-        vcf2tables="$vcf2tables $(echo $vcfs | cut -d ' ' -f $counter) "
+        new=$(echo $vcfs | cut -d ' ' -f $counter)
+        if [ ! $new == "" ]
+        then
+          vcf2tables="$vcf2tables $new"
+        fi
     done
     if [ ! "$vcf2tables" == "" ]
     then
