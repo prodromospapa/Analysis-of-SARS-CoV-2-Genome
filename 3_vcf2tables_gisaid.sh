@@ -1,6 +1,7 @@
 country=$(less country.txt) 
 ram=$(grep MemTotal /proc/meminfo | awk '{print $2}')
 cpu_opt=$((ram/16000000))
+
 if [ $cpu_opt=0 ]
 then
     cpu_opt=1
