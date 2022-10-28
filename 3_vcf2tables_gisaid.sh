@@ -32,7 +32,7 @@ do
         vcf2tables="$vcf2tables ${vcfs[$counter]} "
         counter=$(($counter+1))
     done
-    if [ ! $vcf2tables == "" ]
+    if [ ! "$vcf2tables" == "" ]
     then
         echo 0 > tables_progress_$samples.txt
         command="$command python3 vcf2tables_gisaid.py $vcf2tables $samples &"
