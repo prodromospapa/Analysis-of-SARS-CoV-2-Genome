@@ -67,4 +67,4 @@ plt.tight_layout()
 plt.savefig(f"{country}/{country}.png")
 count +=1
 print(f"{round((count/total)*100,2)}%",end="\r")
-print('all done',end="\r")
+print('all done')
