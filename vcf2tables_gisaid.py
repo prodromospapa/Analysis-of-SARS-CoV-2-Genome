@@ -46,9 +46,7 @@ total=len(vcfs)*30000
 country=open("country.txt").readline().strip()
 
 if len(vcfs) >= 0:
-    n_vcf=0
     for vcf in vcfs:
-        n_vcf+=1
         with open(vcf) as f:
             for i in range(3):
                 f.readline()
