@@ -61,7 +61,9 @@ if len(vcfs) >= 0:
         names = header[10:]
         dataframe = dataframe.iloc[:,10:]
         os.system(f"mkdir -p {country}/tables_gisaid")
-        counter=int(open(f"tables_progress_{sample_n}.txt").read().strip())
+        f=open(f"tables_progress_{sample_n}.txt")
+        counter=int(f.read().strip())
+        f.close()
         for name in names:
             counter+=1
             date = name.split("|")[2]
@@ -70,14 +72,14 @@ if len(vcfs) >= 0:
                 samples_per_day(date,sample_n)
                 while True:
                     try:
-                        if os.path.exists(f"{country}/tables_gisaid/{date}.pickle"):
-                            table = pd.read_pickle(f"{country}/tables_gisaid/{date}.pickle")
-                            create_table(table) 
-                        else:
-                            table = pd.DataFrame(0, np.arange(1,29904), columns=["A","G","C","T"])
-                            create_table(table)
+                        pass
+                    #    if os.path.exists(f"{country}/tables_gisaid/{date}.pickle"):
+                    #        table = pd.read_pickle(f"{country}/tables_gisaid/{date}.pickle")
+                    #        create_table(table) 
+                    #    else:
+                    #        table = pd.DataFrame(0, np.arange(1,29904), columns=["A","G","C","T"])
+                    #        create_table(table)
                     except Exception:
                         continue
-                    break
+                    #break
             os.system(f"echo {counter} > tables_progress_{sample_n}.txt")
-counter.close()
