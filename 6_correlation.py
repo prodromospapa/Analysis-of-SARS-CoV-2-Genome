@@ -1,7 +1,7 @@
 import pandas as pd
 import os
 import numpy as np
-from snapgene_reader import snapgene_file_to_dict, snapgene_file_to_seqrecord
+from snapgene_reader import snapgene_file_to_dict
 
 country=open("country.txt").readline().strip()
 os.system(f"mkdir -p {country}/correlation")
