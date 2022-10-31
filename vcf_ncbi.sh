@@ -2,7 +2,7 @@ gatk='gatk-*/gatk --java-options'
 
 refseq="NC_045512"
 country=$(less country.txt)
-qual=30
+qual=20
 
 cpu_opt=$(find $country/SraAccList/* | wc -l)
 total_ram=$(grep MemTotal /proc/meminfo | awk '{print $2}')
