@@ -25,3 +25,4 @@ for day in dates:
 table = table.iloc[: , 1:].div(dates_table.iloc[0].tolist())#vgazei thn to_remove kai kanei normalizing
 
 table.to_csv(f"{country}/correlation/total_variant.csv")
+print('all done')
