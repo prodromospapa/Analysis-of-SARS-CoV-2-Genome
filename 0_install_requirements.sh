@@ -12,6 +12,9 @@ conda activate thesis
 #install python libraries
 python3 -m pip install -r requirements.txt >/dev/null 2>&1
 
+#install R libraries
+Rscript -e 'install.packages("Hmisc")' >/dev/null 2>&1
+
 #install bash software
 cat conda.txt | while read lib
     do
