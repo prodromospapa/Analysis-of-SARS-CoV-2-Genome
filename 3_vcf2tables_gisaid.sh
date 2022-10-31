@@ -24,7 +24,7 @@ do
     total=$(($total + $(sed '4q;d' $i | grep -o hCoV-19 | wc -l) - 1 ))
 done
 
-while [ $counter -le $(echo $vcfs | wc -w) ]
+while [ $counter -lt $(echo $vcfs | wc -w) ]
 do
     vcf2tables=""
     samples=$(($samples+1))
