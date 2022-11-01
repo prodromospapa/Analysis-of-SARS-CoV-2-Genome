@@ -45,4 +45,4 @@ for label in pos_dict:
   df = pd.DataFrame([new_row.rename(label)])
   final_table = pd.concat([final_table,df], axis = 0)
 
-final_table.to_csv(f"{country}/correlation/annotation.csv")
+final_table.to_csv(f"{country}/correlation/correlation.csv")
