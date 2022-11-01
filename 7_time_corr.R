@@ -4,7 +4,7 @@ country <- toString(read.table("country.txt"))[1]
 file <- paste(country,"/correlation/correlation.csv",sep="")
 data <- read.table(file,sep=",", header=TRUE,row.names=1, quote = "", stringsAsFactors = FALSE)
 
-dates= as.Date(gsub("^X", "", colnames(data)),"%m_%d_%Y")
+dates <- as.Date(gsub("^X", "", colnames(data)),"%m_%d_%Y")
 
 corre <- function(x){
 return(rcorr(dates,as.numeric(x),type="pearson")$r[2,1])}
