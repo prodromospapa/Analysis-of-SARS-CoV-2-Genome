@@ -25,6 +25,7 @@ for day in dates:
 table = table.iloc[: , 1:].div(dates_table.iloc[0].tolist())#vgazei thn to_remove kai kanei normalizing
 
 dictionary = snapgene_file_to_dict('annotation.dna')
+CDS = [k for k in dictionary["features"] if k['type'] == "CDS"]
 mat_peptide = [k for k in dictionary["features"] if k['type'] == "mat_peptide"]
 genes = [k for k in dictionary["features"] if k['type'] == "gene"]
 
@@ -44,6 +45,6 @@ for label in pos_dict:
   df = pd.DataFrame([new_row.rename(label)])
   final_table = pd.concat([final_table,df], axis = 0)
 
+idx = pd.to_datetime(final_table.columns, errors='coerce', format='%m_%d_%Y').argsort()
+final_table = final_table.iloc[:, idx]
 final_table.to_csv(f"{country}/correlation/correlation.csv")
-
-print('all done')
