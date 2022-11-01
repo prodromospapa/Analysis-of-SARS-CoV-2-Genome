@@ -22,7 +22,8 @@ for peptide in mat_peptide[:-1]:
 for gene in genes[1:]:
   pos_dict[gene['qualifiers']['gene']] = [gene['start'],gene['end']]
 
-country=open("country.txt").readline().strip()
+#country=open("country.txt").readline().strip()
+country="Greece"
 
 dates = os.listdir(f"{country}/p_tables")
 dates = [datetime.datetime.strptime(ts, "%m_%d_%Y") for ts in dates]
@@ -56,12 +57,13 @@ for name in pos_dict.keys():
     count +=1
     print(f"{round((count/total)*100,2)}%",end="\r")
 
+final_table.applymap(lambda x : 1 - x)
 final_table.to_csv(f"{country}/heatmap/heatmap.csv")
 
 #heatmap
 plt.figure()
 g = sns.heatmap(final_table)
-g.set_yticklabels(g.get_yticklabels(), rotation=0)
+g.set_yticklabels(g.get_yticklabels().dt.strftime('%m_d_%Y'), rotation=0)
 g.set_title(country)
 plt.tight_layout()
 plt.savefig(f"{country}/{country}.png")

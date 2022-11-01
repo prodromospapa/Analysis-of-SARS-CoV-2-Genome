@@ -18,4 +18,13 @@ corr_p_values <- round(apply(data,1,p),2)
 
 merged_table <- do.call(rbind, Map(data.frame, 'Correlation'=corr_values, 'P-values'=corr_p_values))
 write.csv(merged_table,paste(country,'correlation/time_corr.csv',sep=""),row.names=TRUE)
-print('all done')
+
+dates= as.Date(gsub("^X", "", colnames(merged_table)),"%m_%d_%Y")
+system(paste("mkdir -p ",country,"/correlation/graphs",sep=""))
+for (orf in row.names(merged_table)){
+    png(file=paste(country,"/correlation/graphs/",orf,".png", sep = ""))
+    plot(dates, merged_table[orf,],main = orf,xlab='dates',ylab='frequencies')
+    dev.off()
+}
+
+cat('all done\n')
