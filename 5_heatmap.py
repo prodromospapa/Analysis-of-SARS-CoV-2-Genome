@@ -22,9 +22,8 @@ for peptide in mat_peptide[:-1]:
 for gene in genes[1:]:
   pos_dict[gene['qualifiers']['gene']] = [gene['start'],gene['end']]
 
-#country=open("country.txt").readline().strip()
-country="Greece"
-
+country=open("country.txt").readline().strip()
+ 
 dates = os.listdir(f"{country}/p_tables")
 dates = [datetime.datetime.strptime(ts, "%m_%d_%Y") for ts in dates]
 dates.sort()
