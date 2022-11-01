@@ -21,7 +21,7 @@ for day in dates:
     pickle = pickle.sum(axis=1).rename(day)
     table = pd.concat([table,pickle],axis=1)#enwnei oles tis hmeromhnies se mia
     counter+=1
-    print(round(counter*100/total,2),end="\r")
+    print(f"{round(counter*100/total,2)}%",end="\r")
 table = table.iloc[: , 1:].div(dates_table.iloc[0].tolist())#vgazei thn to_remove kai kanei normalizing
 
 dictionary = snapgene_file_to_dict('annotation.dna')
