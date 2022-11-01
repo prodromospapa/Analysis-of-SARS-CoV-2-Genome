@@ -10,7 +10,6 @@ import warnings
 warnings.filterwarnings('ignore')#mutes pandas fragmentation warning
 
 dictionary = snapgene_file_to_dict('annotation.dna')
-CDS = [k for k in dictionary["features"] if k['type'] == "CDS"]
 mat_peptide = [k for k in dictionary["features"] if k['type'] == "mat_peptide"]
 genes = [k for k in dictionary["features"] if k['type'] == "gene"]
 
