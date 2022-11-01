@@ -61,7 +61,7 @@ final_table.to_csv(f"{country}/heatmap/heatmap.csv")
 #heatmap
 plt.figure()
 g = sns.heatmap(final_table)
-g.set_yticklabels(g.get_yticklabels().dt.strftime('%m_d_%Y'), rotation=0)
+g.set_yticklabels(g.get_yticklabels(), rotation=0)
 g.set_title(country)
 plt.tight_layout()
 plt.savefig(f"{country}/{country}.png")
