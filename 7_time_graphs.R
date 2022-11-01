@@ -1,6 +1,5 @@
-#country <- toString(read.table("country.txt"))[1]
-country <- "Greece"
-file <- paste(country,"/correlation/annotation.csv",sep="")
+country <- toString(read.table("country.txt"))[1]
+file <- paste(country,"/correlation/correlation.csv",sep="")
 data <- read.table(file,sep=",",header=TRUE,row.names=1,quote = "", stringsAsFactors = FALSE)
 
 dates= as.Date(gsub("^X", "", colnames(data)),"%m_%d_%Y")

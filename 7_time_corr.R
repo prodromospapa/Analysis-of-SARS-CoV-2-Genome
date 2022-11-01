@@ -1,8 +1,8 @@
 suppressMessages(library("Hmisc"))
 options(warn=-1)
 country <- toString(read.table("country.txt"))[1]
-file <- paste(country,"/correlation/annotation.csv",sep="")
-data <- read.table(file,sep=",",header=TRUE,row.names=1,quote = "", stringsAsFactors = FALSE)
+file <- paste(country,"/correlation/correlation.csv",sep="")
+data <- read.table(file,sep=",", header=TRUE,row.names=1, quote = "", stringsAsFactors = FALSE)
 
 dates <- as.numeric(1:length(names(data)))
 
