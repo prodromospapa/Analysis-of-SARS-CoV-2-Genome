@@ -5,7 +5,7 @@ cpu_per=0.6
 cpu_opt=$(echo "$cpu_per*$cpu/1" | bc)
 
 
-tar xf hCoV-19_msa_*.tar.xz --wildcards 'msa_*/msa_*.fa*' -O | grep -A 1 ">.*/$country/.*/.*|.*|.*-.*-.*|.*" | awk 'length($0)>10'  > $country/$country.fasta 
+tar xf hCoV-19_msa_*.tar.xz --wildcards 'msa_*/msa_*.fa*' -O | grep -A 1 ">.*/$country/.*/.*|.*|.*-.*-.*|.*" | awk 'length($0)>10' | sed -e 's/ /_/g'  > $country/$country.fasta 
 mkdir -p $country/fasta
 split -l60000 --numeric-suffixes=1 $country/$country.fasta $country/fasta/$country --additional-suffix=.fasta
 
@@ -28,7 +28,7 @@ done
 counter=0
 command=""
 echo 0 > gisaid_progress.txt
-total=$(($(echo $country/fasta/* | wc -w)*2))
+total=$(echo $country/fasta/* | wc -w)
 
 while [ $counter -le $total ]
 do

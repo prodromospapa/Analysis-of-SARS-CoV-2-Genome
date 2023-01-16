@@ -54,7 +54,7 @@ for name in pos_dict.keys():
     count +=1
     print(f"{round((count/total)*100,2)}%",end="\r")
 
-final_table = final_table.applymap(lambda x : 1 - x)
+#final_table = final_table.applymap(lambda x : 1 - x)#converts differences to similarities
 final_table.to_csv(f"{country}/heatmap/heatmap.csv")
 
 #heatmap

@@ -11,24 +11,23 @@ else
     country="${country^}"
     echo $country > country.txt
 fi
-
 sralist=https://www.ncbi.nlm.nih.gov/sra/?term=txid2697049%5BOrganism%3Anoexp%5D+NOT+0%5BMbases%5D+AND+$country
 
 if [ ! -d "$country/SraAccList" ]
 then
-    while [[ ! -f "SraAccList.txt" ]]
+    while [[ ! -f "SraAccList.csv" ]]
     do
         echo -ne $sralist'\r'
     done
     sleep 1
     echo 
-    sed -i '/^$/d' SraAccList.txt
-    sras=$(wc -l < SraAccList.txt)
+    sed -i '1d' SraAccList.csv 
+    sras=$(wc -l < SraAccList.csv)
     rounded="$((($sras / 1000 + 1) *1000))"
     lines=$(($rounded/$cpu_opt))
     mkdir -p $country/SraAccList
-    split -l $lines --numeric-suffixes=1 SraAccList.txt $country/SraAccList/SraAccList_ --additional-suffix=.txt
-    rm SraAccList.txt
+    split -l $lines --numeric-suffixes=1 SraAccList.csv $country/SraAccList/SraAccList_ --additional-suffix=.txt
+    rm SraAccList.csv
 fi
 
 if [ ! -f "refseq/NC_045512.fasta" ]
@@ -46,7 +45,6 @@ conda activate thesis
 
 command=""
 total=0
-
 for text in $country/SraAccList/*
 do 
     sras=$(less $text | wc -l)
