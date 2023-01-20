@@ -62,7 +62,8 @@ final_table.to_csv(f"{country}/heatmap/heatmap.csv")
 
 #heatmap
 plt.figure()
-g = sns.heatmap(final_table)
+dates_list=[i.replace("_","/")[3:] for i in final_table.columns.tolist()]
+g = sns.heatmap(final_table,xticklabels=dates_list)
 g.set_yticklabels(g.get_yticklabels(), rotation=0)
 g.set_title(country)
 plt.tight_layout()
@@ -74,6 +75,7 @@ samples = [(i*n_genes*0.5)/max_n_samples for i in samples]
 
 plt.xticks(rotation=45)
 plt.locator_params(axis='x', nbins=10)
+
 plt.plot(dates,samples,alpha=0.5, label="NCBI")
 plt.tight_layout()
 plt.gca().invert_yaxis()
