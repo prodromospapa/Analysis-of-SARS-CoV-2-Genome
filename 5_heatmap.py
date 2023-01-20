@@ -30,11 +30,13 @@ dates = [datetime.datetime.strftime(ts, "%m_%d_%Y") for ts in dates]
 
 final_table = pd.DataFrame([[[] for i in range(len(dates))] for i in range(len(pos_dict.keys()))], index=pos_dict.keys(), columns=dates)
 
-total = int(os.popen(f"find {country}/p_tables/*/*.csv | wc -l").read()) + len(pos_dict.keys()) + 1
+total = int(os.popen(f"find {country}/p_tables/*/*.csv | wc -l").read()) + len(pos_dict.keys()) + 1 + len(dates)
 count = 0
 os.system(f"mkdir -p {country}/heatmap")
+samples=[]
 for day in dates:
     csvs = os.listdir(f"{country}/p_tables/{day}")
+    samples.append(len(os.listdir(f'{country}/vcf_ncbi/{day}')))
     for csv in csvs:
       count +=1
       table = pd.read_csv(f"{country}/p_tables/{day}/{csv}",index_col=0)
@@ -65,15 +67,6 @@ g.set_yticklabels(g.get_yticklabels(), rotation=0)
 g.set_title(country)
 plt.tight_layout()
 
-#samples graphs
-dates = os.listdir(f'{country}/vcf_ncbi')
-dates = [datetime.datetime.strptime(ts, "%m_%d_%Y") for ts in dates]
-dates.sort()
-dates = [datetime.datetime.strftime(ts, "%m_%d_%Y") for ts in dates]
-samples=[]
-for day in dates:
-    samples.append(len(os.listdir(f'{country}/vcf_ncbi/{day}')))
-
 n_genes = len(final_table.index.tolist())
 max_n_samples = max(samples)
 
@@ -96,6 +89,7 @@ first_date = 5 #if you want to start in a previous day add minus in front of the
 window_days_range = 7
 gisaid_window_samples = []
 for date in dates:
+    count +=1
     date_formatted = datetime.datetime.strptime(date, "%m_%d_%Y")                
     first_date_formatted = date_formatted + datetime.timedelta(days=first_date)
     window = [datetime.datetime.strftime(first_date_formatted, "%m_%d_%Y")]
@@ -112,7 +106,7 @@ gisaid_window_samples = [(i*n_genes*0.5)/max_n_gisaid_samples for i in gisaid_wi
 plt.plot(dates,gisaid_window_samples,alpha=0.5,color='green',label="GISAID")
 plt.legend(["NCBI","GISAID"],bbox_to_anchor=(-0.1,0))
 
-plt.savefig(f"{country}/{country}.png")
+plt.savefig(f"{country}/{country}.png",dpi=500)
 count +=1
 print(f"{round((count/total)*100,2)}%",end="\r")
 print('all done')
