@@ -45,8 +45,6 @@ gisaid_samples = samples.iloc[0].tolist()
 first_date = 5 #if you want to start in a previous day add minus in front of the number
 window_days_range = 7
 gisaid_window_samples = []
-gisaid_dates = os.listdir(f'{country}/tables_gisaid')
-gisaid_dates = [i.replace(".pickle","") for i in gisaid_dates]
 for date in dates:
     date_formatted = datetime.datetime.strptime(date, "%m_%d_%Y")                
     first_date_formatted = date_formatted + datetime.timedelta(days=first_date)
