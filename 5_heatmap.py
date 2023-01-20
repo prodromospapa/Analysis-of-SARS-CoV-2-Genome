@@ -106,7 +106,7 @@ gisaid_window_samples = [(i*n_genes*0.5)/max_n_gisaid_samples for i in gisaid_wi
 plt.plot(dates,gisaid_window_samples,alpha=0.5,color='green',label="GISAID")
 plt.legend(["NCBI","GISAID"],bbox_to_anchor=(-0.1,0))
 
-plt.savefig(f"{country}/{country}.png",dpi=500)
+plt.savefig(f"{country}/heatmap/{country}.png",dpi=500)
 count +=1
 print(f"{round((count/total)*100,2)}%",end="\r")
 print('all done')

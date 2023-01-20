@@ -17,7 +17,7 @@ corr_values <- round(apply(data,1,corre),2)
 corr_p_values <- round(apply(data,1,p),2)
 
 merged_table <- do.call(rbind, Map(data.frame, 'Correlation'=corr_values, 'P-values'=corr_p_values))
-write.csv(merged_table,paste(country,'/time_corr.csv',sep=""),row.names=TRUE)
+write.csv(merged_table,paste(country,'correlation/time_corr.csv',sep=""),row.names=TRUE)
 
 system(paste("mkdir -p ",country,"/correlation/graphs",sep=""))
 for (orf in row.names(data)){
