@@ -18,10 +18,11 @@ file_number=$(echo ${text_file%.*} | tail -c3)
 cat $text_file | while read sra
 do
 	counter=$((counter+1))
-	day=$(vdb-dump --info $sra | grep "TIME" | cut -d " " -f6 | sed 's/(//' | sed 's/\//_/g')
+	info=$(vdb-dump --info $sra)
+	day=$(echo "$info" | grep "TIME" | cut -d " " -f6 | sed 's/(//' | sed 's/\//_/g')
     if [ ! -f $country/vcf_ncbi/$day/$sra.vcf ]	
 		then
-		seq_tool=$(vdb-dump --info $sra | grep "platf" | cut -d " " -f4)
+		seq_tool=$(echo "$info" | grep "platf" | cut -d " " -f4)
 		seq_tool_name=$(echo $seq_tool | sed 's/SRA_PLATFORM_//')
 		if [ $seq_tool_name = "ILLUMINA" ] || [ $seq_tool_name = "OXFORD_NANOPORE" ]
 			then
