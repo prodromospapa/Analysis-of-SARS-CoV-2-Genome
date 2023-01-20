@@ -86,14 +86,12 @@ plt.tight_layout()
 plt.gca().invert_yaxis()
 
 samples = pd.read_pickle(f'{country}/tables_gisaid/samples.pickle')
-idx = pd.to_datetime(samples.columns, errors='coerce', format='%m_%d_%Y').argsort()#afto bgale to meta
-samples = samples.iloc[:, idx]#afto bgale to meta
-#ftiaxe to samples na einai sorted
 
 gisaid_dates = samples.columns.tolist()
 gisaid_samples = samples.iloc[0].tolist()
 
 #window list
+#numbers bellow must be the same with those in fisher.py
 first_date = 5 #if you want to start in a previous day add minus in front of the number
 window_days_range = 7
 gisaid_window_samples = []
