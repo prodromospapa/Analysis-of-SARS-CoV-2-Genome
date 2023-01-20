@@ -19,7 +19,7 @@ then
     do
         echo -ne $sralist'\r'
     done
-    sleep 1
+    sleep 30 #genika des poso na to valeis
     echo 
     sed -i '1d' SraAccList.csv 
     sras=$(wc -l < SraAccList.csv)
