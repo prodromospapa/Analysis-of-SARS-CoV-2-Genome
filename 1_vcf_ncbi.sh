@@ -34,7 +34,7 @@ if [ ! -f "refseq/NC_045512.fasta" ]
 then
     refseq="NC_045512"
     total_ram=$(grep MemTotal /proc/meminfo | awk '{print $2}')
-    ram=$(echo "0.6*$total_ram/1" | bc)
+    ram=$(echo "$cpu_per*$total_ram/1" | bc)
     esearch -db nucleotide -query "${refseq}" | efetch -format fasta > refseq/$refseq.fasta
     bwa index refseq/$refseq.fasta refseq >/dev/null &> /dev/null
     samtools faidx refseq/$refseq.fasta refseq &> /dev/null
