@@ -62,7 +62,7 @@ final_table.to_csv(f"{country}/heatmap/heatmap.csv")
 
 #heatmap
 plt.figure()
-dates_list=[i.replace("_","/")[3:] for i in final_table.columns.tolist()]
+dates_list=[i.replace("_","/") for i in final_table.columns.tolist()]
 g = sns.heatmap(final_table,xticklabels=dates_list)
 g.set_yticklabels(g.get_yticklabels(), rotation=0)
 g.set_title(country)
