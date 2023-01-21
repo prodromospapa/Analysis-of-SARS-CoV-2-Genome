@@ -73,7 +73,7 @@ max_n_samples = max(samples)
 
 samples = [(i*n_genes*0.5)/max_n_samples for i in samples]
 
-plt.xticks(rotation=45)
+plt.xticks(rotation=-45,ha="left")
 plt.locator_params(axis='x', nbins=10)
 
 plt.plot(dates,samples,alpha=0.5, label="NCBI")
