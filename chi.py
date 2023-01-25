@@ -46,7 +46,7 @@ for sample in sra_list.read().split("\n")[:-1]:
                         continue
                 gisaid = gisaid.div(gisaid.sum(axis=1), axis=0)
                 gisaid.replace([np.nan], 0, inplace=True)
-                gisaid = gisaid.replace(0,10**100)
+                gisaid = gisaid.replace(0,10**(-100))
 
                 pos_list = dataframe[1].tolist()
                 ref_list = dataframe[3].tolist()
@@ -65,7 +65,7 @@ for sample in sra_list.read().split("\n")[:-1]:
 
                 ncbi = ncbi.div(ncbi.sum(axis=1), axis=0)
                 ncbi.replace([np.nan], 0, inplace=True)
-                ncbi = ncbi.replace(0,10**100)
+                ncbi = ncbi.replace(0,10**(-100))
 
                 p_values = []
                 for pos in range(1,29904):
