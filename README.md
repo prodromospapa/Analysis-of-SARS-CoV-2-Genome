@@ -15,7 +15,13 @@ It is recommended to run in a tmux session as most of the scripts may run for a 
 * Run 2_gisaid_ncbi.sh using 'bash'
 * Run 4_chi.sh using 'bash'
 * Run 5_heatmap.py using 'python3'
+
+After that you can find the heatmap graph in the country folder named after the country name in the directory
+
 * Run 6_correlation.py using 'python3'
 * run 7_time_corr.R using 'Rscript'
 
-After that you can find the heatmap graph in the country folder named after the country name in the directory
+After that you can find in 'correlation' folder:
+* Graphs of dates-percentage of difference between reference sequence and samples
+* Table with percentage of difference for each gene in time
+* Table with correlation value for each gene
