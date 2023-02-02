@@ -36,16 +36,12 @@ for sample in sra_list.read().split("\n")[:-1]:
                     window.append(datetime.datetime.strftime(first_date_formatted + datetime.timedelta(days=day), "%m_%d_%Y"))
                 #window list
                 gisaid = pd.DataFrame(0, np.arange(1,29904), columns=['A','G','C','T'])
-                n_samples_gisaid = 0
                 for day in window:
                     try:
-                        table = pd.read_pickle(f"{country}/tables_gisaid_old/{day}.pickle")
-                        n_samples_gisaid += int(pd.read_pickle(f"{country}/tables_gisaid_old/samples.pickle")[day])
+                        table = pd.read_pickle(f"{country}/tables_gisaid/{day}.pickle")
                         gisaid += table
                     except Exception:#if day doesn't exist
                         continue
-                gisaid = gisaid.div(gisaid.sum(axis=1), axis=0)
-                gisaid.replace([np.nan], 0, inplace=True)
                 gisaid = gisaid.replace(0,10**(-100))
 
                 pos_list = dataframe[1].tolist()
@@ -62,9 +58,6 @@ for sample in sra_list.read().split("\n")[:-1]:
                             if alt_single in ["A", "G", "C", "T"]:
                                 ncbi.at[pos,alt_single] += int(depth[alt.index(alt_single) + 1])
                         ncbi.at[pos,ref_single] += int(depth[0])
-
-                ncbi = ncbi.div(ncbi.sum(axis=1), axis=0)
-                ncbi.replace([np.nan], 0, inplace=True)
                 ncbi = ncbi.replace(0,10**(-100))
 
                 p_values = []
