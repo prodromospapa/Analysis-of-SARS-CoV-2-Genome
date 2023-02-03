@@ -17,7 +17,7 @@ counter = 0
 for day in dates:
     pickle = pd.read_pickle(f"{country}/tables_gisaid/{day}.pickle")
     for i in range(len(ref)):
-        pickle.iloc[i][ref[i]] = 0
+        pickle.iloc[i][ref[i]] = 0 #sets to zero ref's base  
     pickle = pickle.sum(axis=1).rename(day)
     table = pd.concat([table,pickle],axis=1)#enwnei oles tis hmeromhnies se mia
     counter+=1
@@ -45,6 +45,4 @@ for label in pos_dict:
   df = pd.DataFrame([new_row.rename(label)])
   final_table = pd.concat([final_table,df], axis = 0)
 
-idx = pd.to_datetime(final_table.columns, errors='coerce', format='%m_%d_%Y').argsort()
-final_table = final_table.iloc[:, idx]
 final_table.to_csv(f"{country}/correlation/correlation.csv")
