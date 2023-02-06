@@ -27,8 +27,8 @@ for sample in sra_list.read().split("\n")[:-1]:
             try:
                 dataframe = pd.read_csv(f"{country}/vcf_ncbi/{date}/{sample.strip()}.vcf",comment='#',sep="\t",header=None) 
                 #window list
-                first_date = 5 #if you want to start in a previous day add minus in front of the number
-                window_days_range = 7
+                first_date = 3 #if you want to start in a previous day add minus in front of the number
+                window_days_range = 8
                 date_formatted = datetime.datetime.strptime(date, "%m_%d_%Y")                
                 first_date_formatted = date_formatted + datetime.timedelta(days=first_date)
                 window = [datetime.datetime.strftime(first_date_formatted, "%m_%d_%Y")]

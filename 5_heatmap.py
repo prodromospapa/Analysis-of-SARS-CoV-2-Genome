@@ -87,8 +87,8 @@ gisaid_samples = samples.iloc[0].tolist()
 
 #window list
 #numbers bellow must be the same with those in fisher.py
-first_date = 5 #if you want to start in a previous day add minus in front of the number
-window_days_range = 7
+first_date = 3 #if you want to start in a previous day add minus in front of the number
+window_days_range = 8
 gisaid_window_samples = []
 for date in dates:
     count +=1
